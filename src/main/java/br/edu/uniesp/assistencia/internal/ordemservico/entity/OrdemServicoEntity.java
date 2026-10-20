@@ -75,6 +75,9 @@ public class OrdemServicoEntity {
         if (!cliente.isAtivo()) {
             throw new RegraNegocioException("Não é permitido abrir Ordem de Serviço para um cliente inativo.");
         }
+        if (!equipamento.getCliente().getId().equals(cliente.getId())) {
+            throw new RegraNegocioException("O equipamento informado não pertence ao cliente indicado.");
+        }
         this.numeroProtocolo = numeroProtocolo;
         this.cliente = cliente;
         this.equipamento = equipamento;
